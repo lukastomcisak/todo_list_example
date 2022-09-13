@@ -52,12 +52,15 @@ export class AuthenticationService {
       throw new HttpException('Something went wrong', HttpStatus.UNAUTHORIZED);
     }
 
-    const acces_token = this.jwtService.sign({ username: user.email, sub: user.id });
+    const acces_token = this.jwtService.sign({
+      username: user.email,
+      sub: user.id,
+    });
 
     return {
-        id: user.id,
-        email: user.email,
-        acces_token
-    }
+      id: user.id,
+      email: user.email,
+      acces_token,
+    };
   }
 }

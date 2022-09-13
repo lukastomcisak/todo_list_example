@@ -1,3 +1,5 @@
+import { ListsModule } from './../lists/lists.module';
+import { List } from './../typeorm/entities/List';
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { JwtModule } from '@nestjs/jwt';
@@ -11,7 +13,7 @@ import { AuthenticationService } from './services/authentication.service';
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
-    TypeOrmModule.forFeature([User]),
+    TypeOrmModule.forFeature([User, List]),
     PassportModule,
     JwtModule.register({
       secret: process.env.SECRET,
