@@ -1,16 +1,11 @@
-import { Body, Controller, Get, Post, UseGuards, Request } from '@nestjs/common';
-import { JwtService } from '@nestjs/jwt';
-import { hashPassword } from 'src/utils/auth';
+import { Body, Controller, Post } from '@nestjs/common';
 import { AuthenticationService } from '../services/authentication.service';
 import { LoginDto } from '../dtos/login.dto';
 import { SignUpDto } from '../dtos/signUp.dto';
-import { JwtAuthGuard } from '../guards/jwt-authorization.guard';
 
 @Controller('authentication')
 export class AuthenticationController {
-  constructor(
-    private authenticationService: AuthenticationService,
-  ) {}
+  constructor(private authenticationService: AuthenticationService) {}
 
   @Post('signup')
   async signUp(@Body() signUpDto: SignUpDto) {

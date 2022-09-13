@@ -1,4 +1,11 @@
-import { Column, Entity, JoinColumn, PrimaryGeneratedColumn } from 'typeorm';
+import { List } from './List';
+import {
+  Column,
+  Entity,
+  JoinTable,
+  ManyToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 @Entity({ name: 'users' })
 export class User {
@@ -10,4 +17,9 @@ export class User {
 
   @Column()
   password: string;
+
+  @ManyToMany(() => List, (list) => list.users)
+  @JoinTable()
+  lists: List[];
+  user: List;
 }
